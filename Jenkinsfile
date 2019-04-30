@@ -18,10 +18,10 @@ node {
         }
 
         stage('Image') {
-            dir ('Account-Service') {
+           // dir ('Account-Service') {
                 def app = docker.build "192.168.1.245:5000/account-service:${env.version}"
                 app.push()
-            }
+           // }
         }
 
         stage ('Run') {
