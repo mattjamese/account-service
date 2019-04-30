@@ -19,13 +19,13 @@ node {
 
         stage('Image') {
             dir ('account-service') {
-                def app = docker.build "localhost:5000/account-service:${env.version}"
+                def app = docker.build "192.168.1.245:5000/account-service:${env.version}"
                 app.push()
             }
         }
 
         stage ('Run') {
-            docker.image("localhost:5000/account-service:${env.version}").run('-p 2222:2222 -h account --name account --link discovery')
+            docker.image("192.168.1.245:5000/account-service:${env.version}").run('-p 2222:2222 -h account --name account --link discovery')
         }
 
         stage ('Final') {
