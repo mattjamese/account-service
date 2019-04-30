@@ -3,10 +3,10 @@
 //[code language="java"]
 node {
 
-    withMaven(maven:'maven') {
+    //withMaven(maven:'maven') {
 
         stage('Checkout') {
-            git url: 'https://github.com/mattjamese/account-service.git', CredentialsID: 'mattjamese', branch: 'master'
+            git url: 'https://github.com/saurabh0010/sample-spring-microservices.git', CredentialsID: 'mattjamese', branch: 'master'
         }
 
         stage('Build') {
@@ -32,6 +32,6 @@ node {
             build job: 'customer-service-pipeline', wait: false
         }      
 
-    }
+    //}
 
 }
