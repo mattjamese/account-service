@@ -16,6 +16,17 @@ node {
             print pom.version
             env.version = pom.version
         }
+        
+        /*stage('RemoveOldContainers'){	    
+    	    script {
+				  try {
+				      sh 'docker rm -f account'
+				  } catch (Exception e) {
+				     
+				      build job: 'Image'
+				  }
+			}				     
+		}*/
 
         stage('Image') {
            // dir ('Account-Service') {
@@ -26,8 +37,7 @@ node {
         }
 
         stage ('Run') {
-            //docker.image("localhost:5000/account-service:${env.version}").run('-p 2222:2222 -h account --name account --link discovery')
-            docker.image("localhost:5000/account-service:${env.version}").run('-p 2222:2222 -h account --name account')
+            docker.image("localhost:5000/account-service:${env.version}").run('-p 2222:2222 -h account --name account --link discovery')
         }
 
         stage ('Final') {
